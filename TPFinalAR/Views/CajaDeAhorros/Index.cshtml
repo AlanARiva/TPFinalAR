@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TPFinalAR.Models.CajaDeAhorro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (ViewBag.Message == "ok")
+{
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Operación realizada.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+
+<h1 class="h1">Cajas de ahorro</h1>
+
+<p class="my-4">
+    <a asp-action="Create" class="btn btn-success text-decoration-none text-white"><i class="fa-solid fa-circle-plus px-2"></i>Nueva caja de ahorro</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model._cbu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._saldo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item._cbu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._saldo)
+            </td>
+            <td>
+                    <a asp-action="Details" asp-route-id="@item._id_caja" class="btn btn-secondary text-decoration-none text-white"><i class="fa fa-solid fa-file-lines px-2"></i>Detalle</a>
+                    <a asp-action="Delete" asp-route-id="@item._id_caja" class="btn btn-danger text-decoration-none text-white"><i class="fa fa-solid fa-trash-can px-2"></i>Eliminar</a>
+                    <a asp-action="Depositar" asp-route-id="@item._id_caja" class="btn btn-warning text-decoration-none text-white"><i class="fa fa-solid fa-money-bill-transfer px-2"></i>Depositar</a>
+                    <a asp-action="Extraer" asp-route-id="@item._id_caja" class="btn btn-dark text-decoration-none text-white"><i class="fa fa-solid fa-cash-register px-2"></i>Extraer</a>
+                    <a asp-action="Transferir" asp-route-id="@item._id_caja" class="btn btn-primary text-decoration-none text-white"><i class="fa fa-solid fa-arrow-right-arrow-left px-2"></i>Transferir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

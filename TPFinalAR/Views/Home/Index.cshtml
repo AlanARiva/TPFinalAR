@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido <span class="text-black-50">@ViewBag.Nombre</span></h1>
+    <p class="h5">Ya estas listo para operar!</p>
+    <div class="row py-4">
+        <a asp-action="Index" asp-controller="CajaDeAhorros" class="text-decoration-none"><img src="~/img/comenzar.jpg" alt="Comenzar" class="col-6 mx-auto" /></a>
+    </div>
+</div>

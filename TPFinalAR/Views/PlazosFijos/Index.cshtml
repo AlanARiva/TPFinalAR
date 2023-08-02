@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TPFinalAR.Models.PlazoFijo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (ViewBag.Message == "ok")
+{
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Operación realizada.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+}
+
+<h1 class="h1">Plazos fijos</h1>
+
+<p class="my-4">
+    <a asp-action="Create" class="btn btn-success text-decoration-none text-white"><i class="fa-solid fa-circle-plus px-2"></i>Generá tu plazo fijo</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model._titular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._monto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._fechaIni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._fechaFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._tasa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._pagado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item._titular._id_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._monto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._fechaIni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._fechaFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._tasa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._pagado)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item._id_plazoFijo" class="btn btn-secondary text-decoration-none text-white"><i class="fa fa-solid fa-file-lines px-2"></i>Detalle</a>
+                <a asp-action="Delete" asp-route-id="@item._id_plazoFijo" class="btn btn-danger text-decoration-none text-white"><i class="fa fa-solid fa-trash-can px-2"></i>Eliminar</a>
+                <a asp-action="Pagar" asp-route-id="@item._id_plazoFijo" class="btn btn-primary text-decoration-none text-white"><i class="fa-solid fa-money-bill-wave px-2"></i>Pagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

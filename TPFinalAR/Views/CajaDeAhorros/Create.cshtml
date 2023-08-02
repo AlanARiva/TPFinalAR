@@ -1,0 +1,60 @@
+﻿@model TPFinalAR.Models.CajaDeAhorro
+
+@{
+    ViewData["Title"] = "Nueva caja de ahorro";
+}
+
+@if (@ViewBag.Message == "nok-Exists")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El CBU que intenta generar ya existe.',
+            footer: 'Comuniquese con la sucursal..'
+        })
+    </script>
+}
+
+<h1 class="h1">Caja de ahorro</h1>
+
+<h4 class="h4">Alta de nueva caja de ahorro</h4>
+<hr />
+<div class="row">
+    <div class="col-4">
+        <form asp-action="Create">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            @if (User.IsInRole("True")) //Solo el admin
+            {
+                <div class="form-group row my-3">
+                    <label for="idusuario" class="control-label">DNI Usuario</label>
+                    <select name="idusuario" class="form-control" asp-items="ViewBag.Usuarios"></select>
+                </div>
+            }
+            <p class="text-black-50 py-5">Esta a punto de dar de alta una <span class="fw-bold">nueva caja</span> de ahorro.</p>
+            @*<div class="form-group row my-3">
+                <label asp-for="_cbu" class="control-label col-5">CBU</label>
+                <input asp-for="_cbu" class="form-control col-5" />
+                <span asp-validation-for="_cbu" class="text-danger"></span>
+            </div>
+            <div class="form-group row my-3">
+                <label asp-for="_saldo" class="control-label col-6">Saldo</label>
+                <input asp-for="_saldo" class="form-control col-6" />
+                <span asp-validation-for="_saldo" class="text-danger col-12"></span>
+            </div>*@
+            <div class="form-group my-4">
+                <input type="submit" value="Alta nueva caja" class="btn btn-success"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de cajas de ahorro</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

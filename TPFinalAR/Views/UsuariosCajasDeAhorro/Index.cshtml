@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TPFinalAR.Models.UsuarioCajaDeAhorro>
+
+@{
+    ViewData["Title"] = "Titulares de cuenta";
+}
+
+@if (ViewBag.Message == "ok")
+{
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Operación realizada.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+
+<h1 class="h1">Titulares de cuenta</h1>
+
+<p class="my-4">
+    <a asp-action="Create" class="btn btn-success text-decoration-none text-white"><i class="fa-solid fa-circle-plus px-2"></i>Nuevo cotitular</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.caja)
+            </th>
+            <th>
+                DNI
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.caja._cbu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user._dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user._apellido), @Html.DisplayFor(modelItem => item.user._nombre)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id_usuario="@item.user._id_usuario" asp-route-id_caja="@item.caja._id_caja" class="btn btn-secondary text-decoration-none text-white"><i class="fa fa-solid fa-file-lines px-1"></i>Detalle</a>
+                <a asp-action="Delete" asp-route-id_usuario="@item.user._id_usuario" asp-route-id_caja="@item.caja._id_caja" class="btn btn-danger text-decoration-none text-white"><i class="fa fa-solid fa-trash-can px-1"></i>Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,90 @@
+﻿@model TPFinalAR.Models.PlazoFijo
+
+@{
+    ViewData["Title"] = "Pago de plazo fijo";
+}
+
+@if (@ViewBag.Message == "nok")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El plazo fijo ya se encuentra pago',
+            footer: 'Gracias..'
+        })
+    </script>
+}
+
+@if (@ViewBag.Message == "nokp")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No dispone de saldo suficiente',
+            footer: 'Modifique cuenta de pago..'
+        })
+    </script>
+}
+
+<h1 class="h1">Pago de plazo fijo</h1>
+
+<h3 class="h3 text-danger">Esta seguro que desea pagar su plazo fijo?</h3>
+<div>
+    <hr />
+ </div>
+ <div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._titular)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._monto)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._fechaIni)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._fechaFin)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._tasa)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._pagado)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model._titular._id_usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._monto)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._fechaIni)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._fechaFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._tasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._pagado)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form asp-action="Pagar" class="container mt-5">
+        <input type="hidden" asp-for="_id_plazoFijo" />
+        <input type="submit" value="Pagar producto" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de plazos fijos</a>
+    </form>
+</div>

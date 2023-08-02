@@ -1,0 +1,76 @@
+﻿@model TPFinalAR.Models.Pago
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@if (@ViewBag.Message == "nok")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se puede eliminar un pago ya efectuado.',
+            footer: 'Gracias..'
+        })
+    </script>
+}
+
+<h1 class="h1">Baja de producto</h1>
+
+<h3 class="h3 text-danger">Esta seguro que desea dar de baja su orden de pago?</h3>
+<div>
+    <h4>Pago</h4>
+    <hr />
+</div>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._usuario)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._monto)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._pagado)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._metodo)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._detalle)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model._usuario._id_usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._monto)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._pagado)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._metodo)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._detalle)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="_id_pago" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+    </form>
+
+    <div class="container mt-5">
+            <button class="btn btn-warning"><a asp-action="Index" class="text-white text-decoration-none"><span class="fa fa-solid fa-backward mx-2"></span>Lista de ordenes de pago</a></button>
+    </div>
+</div>

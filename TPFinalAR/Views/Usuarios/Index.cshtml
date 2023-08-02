@@ -1,0 +1,91 @@
+﻿@model IEnumerable<TPFinalAR.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (ViewBag.Message == "ok")
+{
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Operación realizada.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+
+<h1 class="h1">Usuarios</h1>
+
+<p class="my-4">
+    <a asp-action="Create" class="btn btn-success text-decoration-none text-white"><i class="fa-solid fa-circle-plus px-2"></i>Nuevo usuario</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model._dni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._intentosFallidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._esUsuarioAdmin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._bloqueado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item._dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._intentosFallidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._esUsuarioAdmin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._bloqueado)
+            </td>
+            <td>
+                <a asp-action="Estado" asp-route-id="@item._id_usuario" class="btn btn-warning text-decoration-none text-white"><i class="fa-solid fa-user px-1"></i>Estado</a>
+                <a asp-action="Details" asp-route-id="@item._id_usuario" class="btn btn-secondary text-decoration-none text-white"><i class="fa fa-solid fa-file-lines px-1"></i>Detalle</a>
+                <a asp-action="Delete" asp-route-id="@item._id_usuario" class="btn btn-danger text-decoration-none text-white"><i class="fa fa-solid fa-trash-can px-1"></i>Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

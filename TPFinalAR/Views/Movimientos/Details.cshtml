@@ -1,0 +1,53 @@
+﻿@model TPFinalAR.Models.Movimiento
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h1 class="h1">Detalle</h1>
+
+<div>
+    <h4 class="h4">Movimiento</h4>
+    <hr />
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model._cajaDeAhorro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._detalle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._monto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._fecha)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model._cajaDeAhorro._cbu)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model._detalle)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model._monto)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model._fecha)
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    <div class="container mt-5">
+        <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de movimientos</a>
+    </div>
+</div>

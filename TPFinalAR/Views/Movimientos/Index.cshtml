@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TPFinalAR.Models.Movimiento>
+
+@{
+    ViewData["Title"] = "Movimientos";
+}
+
+<h1 class="h1">Movimientos</h1>
+
+<p class="my-4">
+    <a asp-action="Buscar" class="btn btn-success text-decoration-none text-white"><i class="fa-solid fa-magnifying-glass px-2"></i>Buscar movimientos</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model._cajaDeAhorro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._detalle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._monto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._fecha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item._cajaDeAhorro._cbu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._detalle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._monto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._fecha)
+            </td>
+            <td>
+                    <a asp-action="Details" asp-route-id="@item._id_Movimiento" class="btn btn-secondary text-decoration-none text-white"><i class="fa fa-solid fa-file-lines px-2"></i>Detalle</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

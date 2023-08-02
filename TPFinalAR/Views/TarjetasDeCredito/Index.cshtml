@@ -1,0 +1,74 @@
+﻿@model IEnumerable<TPFinalAR.Models.TarjetaDeCredito>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (ViewBag.Message == "ok")
+{
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Operación realizada.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            </script>
+}
+
+<h1 class="h1">Tarjetas de crédito</h1>
+
+<p class="my-4">
+    <a asp-action="Create" class="btn btn-success text-decoration-none text-white"><i class="fa-solid fa-circle-plus px-2"></i>Saca tu tarjeta</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model._titular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._codigoV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._limite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._consumos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item._titular._id_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._codigoV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._limite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._consumos)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item._id_tarjeta" class="btn btn-secondary text-decoration-none text-white"><i class="fa fa-solid fa-file-lines px-1"></i>Detalle</a>
+                <a asp-action="Delete" asp-route-id="@item._id_tarjeta" class="btn btn-danger text-decoration-none text-white"><i class="fa fa-solid fa-trash-can px-1"></i>Dar de baja</a>
+                <a asp-action="Pagar" asp-route-id="@item._id_tarjeta" class="btn btn-primary text-decoration-none text-white"><i class="fa-solid fa-money-bill-wave px-1"></i>Pagar</a>
+                <a asp-action="Limite" asp-route-id="@item._id_tarjeta" class="btn btn-warning text-decoration-none text-white"><i class="fa-solid fa-plus px-1"></i>Aumentar límite</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

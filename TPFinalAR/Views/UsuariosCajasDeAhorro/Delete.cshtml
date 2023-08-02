@@ -1,0 +1,61 @@
+﻿@model TPFinalAR.Models.UsuarioCajaDeAhorro
+
+@{
+    ViewData["Title"] = "Eliminar participante";
+}
+
+@if (@ViewBag.Message == "nokp")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La cuente debe tener al menos un titular.',
+            footer: 'Gracias..'
+        })
+    </script>
+}
+
+<h1 class="h1">Eliminar participante de cuenta</h1>
+<h3 class="h3 text-danger">Estas seguro que queres eliminar este participante?</h3>
+
+<div>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.caja)
+                </th>
+                <th>
+                    DNI
+                </th>
+                <th>
+                    Nombre
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                    @Html.DisplayFor(model => model.caja._cbu)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(model => model.user._dni)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(model => model.user._apellido), @Html.DisplayFor(model => model.user._nombre)
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+<form asp-action="Delete" class="container mt-5">
+    <input type="hidden" asp-for="id_usuario" />
+    <input type="hidden" asp-for="id_caja" />
+    <input type="submit" value="Eliminar participante" class="btn btn-danger" />
+</form>
+
+<div class="container mt-5">
+    <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de titulares</a>
+</div>

@@ -1,0 +1,79 @@
+﻿@model TPFinalAR.Models.Usuario
+
+@{
+    ViewData["Title"] = "Estado de usuario";
+}
+
+<h1 class="h1">Estado de usuario</h1>
+
+<h3 class="h3">Aquí podrás bloquear y desbloquear el usuario</h3>
+<div>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model._dni)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model._nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model._apellido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model._mail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model._password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model._intentosFallidos)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model._esUsuarioAdmin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model._bloqueado)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model._dni)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._mail)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._password)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._intentosFallidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._esUsuarioAdmin)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._bloqueado)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <form asp-action="Estado" class="container mt-5">
+        <input type="hidden" asp-for="_id_usuario" />
+        <input type="submit" value="Bloquear/desbloquear usuario" class="btn btn-danger" />
+    </form>
+
+    <div class="container mt-5">
+        <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de usuarios</a>
+    </div>
+</div>

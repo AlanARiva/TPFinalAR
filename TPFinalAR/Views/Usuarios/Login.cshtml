@@ -1,0 +1,98 @@
+﻿@if (@ViewBag.Message == "ok-registro")
+{
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Usuario registrado correctamente.',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+}
+
+@if (@ViewBag.Message == "nok")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Debe ingresar usuario y contraseña',
+            footer: 'Verifique los datos ingresados..'
+        })
+    </script>
+}
+
+@if (@ViewBag.Message == "nokp")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Los datos ingresados son incorrectos',
+            footer: 'Verifique los datos ingresados..'
+        })
+    </script>
+}
+
+@if (@ViewBag.Message == "nok-bloqueado")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Tu cuenta se encuentra bloqueada',
+            footer: 'Contactate con la sucursal..'
+        })
+    </script>
+}
+
+@if (ViewBag.Message == "ok-cierre")
+{
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Cesión cerrada con éxito.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+
+<div class="container">
+    <div class="row">
+        <form asp-action="Login" class="col-6 shadow-lg p-3 mb-5 bg-white rounded mx-auto">
+            <div class="row">
+                <img src="~/img/banco.png" alt="Banco" style="width:150px" class="mx-auto"/>
+            </div>
+            <div class="row">
+                <h2 class="h2 text-black">Iniciar sesión</h2>
+            </div>
+            <div class="form-group my-1">
+                <label for="mail">Mail</label>
+                <input type="email" class="form-control" id="mail" name="mail" aria-describedby="emailHelp" placeholder="Ingresa tu mail">
+                <small id="emailHelp" class="form-text text-muted">Recorda nunca compartir tus datos de ingreso con nadie.</small>
+            </div>
+            <div class="form-group my-1">
+                <label for="password">Contraseña</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña">
+            </div>
+            <div class="row my-4">
+                <button type="submit" class="btn btn-success col-11 mx-auto">Ingresar</button>
+            </div>
+        </form>
+        <div class="col-6">
+            <div class="card mb-3">
+                <img src="~/img/personas.png" class="card-img-top" alt="Personas contentas">
+                <div class="card-body">
+                        <h5 class="card-title">Todavía no tenes tu cuenta?</h5>
+                        <p class="card-text">Con nosotros tenes tu cuenta bonificada de por vida. Vas a poder acceder a todos nuestros productos a mínimo costo de mantenimiento.</p>
+                        <a class="btn btn-success" asp-controller="Usuarios" asp-action="Create">Quiero mi cuenta!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

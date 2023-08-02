@@ -1,0 +1,39 @@
+﻿@model TPFinalAR.Models.CajaDeAhorro
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="h1">Detalle</h1>
+
+<div>
+    <h4 class="h4">Caja de ahorro</h4>
+    <hr />
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model._cbu)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model._saldo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model._cbu)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model._saldo)
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="container mt-5">
+    <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de cajas de ahorro</a>
+</div>

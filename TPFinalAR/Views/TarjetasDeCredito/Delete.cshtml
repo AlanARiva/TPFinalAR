@@ -1,0 +1,76 @@
+﻿@model TPFinalAR.Models.TarjetaDeCredito
+
+@{
+    ViewData["Title"] = "Baja de producto";
+}
+
+@if (@ViewBag.Message == "nok")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La tarjeta no debe tener consumos',
+            footer: 'Verifique y vuelva a intentarlo..'
+        })
+    </script>
+}
+
+<h1 class="h1">Baja de producto</h1>
+
+<h3 class="h3 text-danger">Esta seguro que desea dar de baja su tarjeta de crédito?</h3>
+<div>
+    <hr />
+</div>
+    
+ <div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._titular)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._numero)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._codigoV)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._limite)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._consumos)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model._titular._id_usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._codigoV)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._limite)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._consumos)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form asp-action="Delete" class="container mt-5">
+        <input type="hidden" asp-for="_id_tarjeta" />
+        <input type="submit" value="Baja de producto" class="btn btn-danger" />
+    </form>
+
+    <div class="container mt-5">
+        <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de tarjetas</a>
+    </div>
+</div>

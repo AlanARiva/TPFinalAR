@@ -1,0 +1,57 @@
+﻿@model TPFinalAR.Models.CajaDeAhorro
+
+@{
+    ViewData["Title"] = "Baja de producto";
+}
+
+@if (@ViewBag.Message == "nok-saldo")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No puede dar de baja una cuenta con saldo!',
+            footer: 'Gracias..'
+        })
+    </script>
+}
+
+<h1 class="h1">Baja de producto</h1>
+
+<div>
+    <h4 class="h4 text-danger">Esta seguro que desea dar de baja su caja de ahorro?</h4>
+    <hr />
+</div>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._cbu)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._saldo)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model._cbu)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._saldo)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <form asp-action="Delete" class="container mt-5">
+        <input type="hidden" asp-for="_id_caja" />
+        <input type="submit" value="Baja de producto" class="btn btn-danger" />
+    </form>
+
+    <a asp-action="Index" class="btn btn-warning text-white text-decoration-none mt-2"><i class="fa fa-solid fa-backward mx-2"></i>Lista de cajas de ahorro</a>
+
+</div>

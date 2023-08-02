@@ -1,0 +1,79 @@
+﻿@model TPFinalAR.Models.Usuario
+
+@{
+    ViewData["Title"] = "Alta de usuarios";
+}
+
+@if (@ViewBag.Message == "nok-repeat")
+{
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Usuario ya registrado previamente.',
+                footer: 'Comuniquese con la sucursal..'
+            })
+        </script>
+}
+
+<h1 class="h1">Alta de usuarios</h1>
+
+<h4 class="h4">Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="_dni" class="control-label"></label>
+                <input asp-for="_dni" class="form-control" />
+                <span asp-validation-for="_dni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="_nombre" class="control-label"></label>
+                <input asp-for="_nombre" class="form-control" />
+                <span asp-validation-for="_nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="_apellido" class="control-label"></label>
+                <input asp-for="_apellido" class="form-control" />
+                <span asp-validation-for="_apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="_mail" class="control-label"></label>
+                <input asp-for="_mail" class="form-control" />
+                <span asp-validation-for="_mail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="_password" class="control-label"></label>
+                <input type="password" asp-for="_password" class="form-control" />
+                <span asp-validation-for="_password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="_intentosFallidos" class="form-control" value="0"/>
+            </div>
+            @if(User.IsInRole("True"))
+            {
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="_esUsuarioAdmin" /> @Html.DisplayNameFor(model => model._esUsuarioAdmin)
+                    </label>
+                </div>
+            }
+            <div class="form-group my-4">
+                <input type="submit" value="Crear usuario" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (User.IsInRole("True") || User.IsInRole("False"))
+{
+    <div class="container mt-5">
+        <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de usuarios</a>
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

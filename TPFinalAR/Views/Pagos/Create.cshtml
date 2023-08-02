@@ -1,0 +1,47 @@
+﻿@model TPFinalAR.Models.Pago
+
+@{
+    ViewData["Title"] = "Orden de pago";
+}
+
+<h1 class="h1">Orden de pago</h1>
+
+<h4 class="h4">Nueva</h4>
+<hr />
+<div class="row">
+    <div class="col-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if(User.IsInRole("True")) {
+                <div class="form-group">
+                    <label asp-for="_id_usuario" class="control-label"></label>
+                    <select asp-for="_id_usuario" class ="form-control" asp-items="ViewBag._id_usuario"></select>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="_monto" class="control-label"></label>
+                <input asp-for="_monto" class="form-control" />
+                <span asp-validation-for="_monto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="_metodo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="_detalle" class="control-label"></label>
+                <input asp-for="_detalle" class="form-control" />
+                <span asp-validation-for="_detalle" class="text-danger"></span>
+            </div>
+            <div class="form-group my-4">
+                <input type="submit" value="Nueva orden de pago" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <button class="btn btn-warning"><a asp-action="Index" class="text-white text-decoration-none"><span class="fa fa-solid fa-backward mx-2"></span>Lista de ordenes de pago</a></button>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

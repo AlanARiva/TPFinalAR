@@ -1,0 +1,80 @@
+﻿@model TPFinalAR.Models.TarjetaDeCredito
+
+@{
+    ViewData["Title"] = "Aumento de límite";
+}
+
+@if (@ViewBag.Message == "nok")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La tarjeta no debe tener consumos',
+            footer: 'Verifique y vuelva a intentarlo..'
+        })
+    </script>
+}
+
+<h1 class="h1">Aumento de límite</h1>
+
+<h4 class="h4">Tarjeta de crédito</h4>
+<div>
+    <hr />
+</div>
+    
+ <div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._titular)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._numero)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._codigoV)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._limite)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model._consumos)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model._titular._id_usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._codigoV)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._limite)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model._consumos)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form asp-action="Limite" class="form mt-5">
+        <input type="hidden" asp-for="_id_tarjeta" />
+        <div class="d-flex justify-content-center">
+            <input type="text" name="nuevolimite" placeholder="Nuevo límite" class="col-2 m-1 form-text border border-success rounded px-2" />
+            <input type="submit" value="Aumentar límite" class="col-2 m-1 btn btn-success" />
+        </div>
+    </form>
+
+    <div class="container mt-5">
+        <button class="btn btn-warning"><a asp-action="Index" class="text-white text-decoration-none"><span class="fa fa-solid fa-backward mx-2"></span>Lista de tarjetas</a></button>
+    </div>
+
+</div>

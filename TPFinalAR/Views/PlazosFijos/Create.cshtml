@@ -1,0 +1,95 @@
+﻿@model TPFinalAR.Models.PlazoFijo
+
+@{
+    ViewData["Title"] = "Nuevo plazo fijo";
+}
+
+@if (@ViewBag.Message == "nok")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrió un error inesperado',
+            footer: 'Comuniquese con la sucursal..'
+        })
+    </script>
+}
+
+@if (@ViewBag.Message == "nokp")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No dispone de saldo suficiente o fecha fin menor a fecha inicio',
+            footer: 'Modifique cuenta de pago o verifique fechas..'
+        })
+    </script>
+}
+
+@if (@ViewBag.Message == "noki")
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Monto debe ser superior a $1000',
+            footer: 'Modifique el monto..'
+        })
+    </script>
+}
+
+<h1 class="h1">Plazo fijo</h1>
+
+<h4 class="h4">Alta de nuevo plazo fijo</h4>
+<hr />
+<div class="row">
+    <div class="col-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if(User.IsInRole("True")) 
+            {
+                <div class="form-group row my-3">
+                    <label asp-for="_id_usuario" class="control-label"></label>
+                    <select asp-for="_id_usuario" class="form-control" asp-items="ViewBag._id_usuario"></select>
+                </div>
+            }
+            <div class="form-group row my-3">
+                <label asp-for="_monto" class="control-label"></label>
+                <input asp-for="_monto" class="form-control" />
+                <span asp-validation-for="_monto" class="text-danger"></span>
+            </div>
+            <div class="form-group row my-3">
+                <label asp-for="_fechaIni" class="control-label"></label>
+                <input asp-for="_fechaIni" class="form-control" />
+                <span asp-validation-for="_fechaIni" class="text-danger"></span>
+            </div>
+            <div class="form-group row my-3">
+                <label asp-for="_fechaFin" class="control-label"></label>
+                <input asp-for="_fechaFin" class="form-control" />
+                <span asp-validation-for="_fechaFin" class="text-danger"></span>
+            </div>
+            <div class="form-group row my-3">
+                <label asp-for="_tasa" class="control-label"></label>
+                <input asp-for="_tasa" class="form-control" readonly="readonly" value="45.6"/>
+                <span asp-validation-for="_tasa" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label class="control-label my-2">Seleccione CBU de pago: </label>
+                <select name="cbu" class="form-control mb-3" asp-items="ViewBag.cbu"></select>
+            </div>
+            <div class="form-group my-4">
+                <input type="submit" value="Generar plazo fijo" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de plazos fijos</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

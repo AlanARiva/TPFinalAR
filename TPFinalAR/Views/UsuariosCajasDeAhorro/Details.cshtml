@@ -1,0 +1,43 @@
+﻿@model TPFinalAR.Models.UsuarioCajaDeAhorro
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h1 class="h1">Detalle</h1>
+
+<div>
+    <h4 class="h4">Titulares de cuenta</h4>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.caja)
+                </th>
+                <th>
+                    DNI
+                </th>
+                <th>
+                    Nombre
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                    @Html.DisplayFor(model => model.caja._cbu)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(model => model.user._dni)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(model => model.user._apellido), @Html.DisplayFor(model => model.user._nombre)
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container mt-5">
+    <a asp-action="Index" class="btn btn-warning text-white text-decoration-none"><i class="fa fa-solid fa-backward mx-2"></i>Lista de titulares</a>
+</div>
